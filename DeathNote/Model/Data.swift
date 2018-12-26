@@ -12,6 +12,6 @@ struct Data {
     static var corpses : [(String, String, String)] = [
         ("Russe Bolton","Gobled up by own dogs", "24 November 2016"),
         ("Joffrey Baratheon","Poisoned", "16 June 2016"),
-        ("Ned Stark","Executed", "16 June 2013º")
+        ("Ned Stark","Executed", "16 June 2013")
     ]
 }
