@@ -1,9 +1,9 @@
 //
 //  AppDelegate.swift
-//  DeathNote
+//  d02
 //
-//  Created by Ruslan on 12/9/18.
-//  Copyright © 2018 Ruslan Naumenko. All rights reserved.
+//  Created by Ruslan NAUMENKO on 1/17/19.
+//  Copyright © 2019 Ruslan NAUMENKO. All rights reserved.
 //
 
 import UIKit

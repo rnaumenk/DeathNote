@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:DeathNote.xcodeproj">
+      location = "self:/Users/ruslan/Desktop/DeathNote/DeathNote.xcodeproj">
    </FileRef>
 </Workspace>

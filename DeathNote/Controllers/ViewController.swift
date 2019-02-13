@@ -1,49 +1,63 @@
 //
 //  ViewController.swift
-//  DeathNote
+//  d02
 //
-//  Created by Ruslan on 12/9/18.
-//  Copyright © 2018 Ruslan Naumenko. All rights reserved.
+//  Created by Ruslan NAUMENKO on 1/17/19.
+//  Copyright © 2019 Ruslan NAUMENKO. All rights reserved.
 //
 
 import UIKit
 
 class ViewController: UIViewController {
-    
-    @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var datePicker: UIDatePicker!
-    @IBOutlet weak var descTextView: UITextView!
+
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
-        datePicker.minimumDate = Date()
-        descTextView.layer.borderWidth = 1.0
+        super.viewDidLoad()
+
+        tableView.estimatedRowHeight = 40
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.backgroundColor = view.backgroundColor
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        nameTextField.resignFirstResponder()
-        descTextView.resignFirstResponder()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tableView.reloadData()
+    }
+
+}
+
+extension ViewController: UITableViewDelegate {
+    
+}
+
+extension ViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    @IBAction func doneButton(_ sender: Any) {
-        
-        let dateFormat = DateFormatter()
-        
-        dateFormat.dateFormat = "dd MMMM yyyy"
-        
-        if nameTextField.text != "" {
-            print(nameTextField.text!)
-        }
-        
-        print(dateFormat.string(from: datePicker.date))
-        
-        if descTextView.text != "" {
-            print(descTextView.text!)
-        }
-        
-        if nameTextField.text != "" {
-            Data.corpses.append((nameTextField.text!, descTextView.text!, dateFormat.string(from: datePicker.date)))
-            navigationController?.popViewController(animated: true)
-        }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return Corpses.person.count
     }
     
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! MyTableViewCell
+        
+        cell.corpse = Corpses.person[indexPath.row]
+        
+        cell.contentView.layer.borderWidth = 4
+        
+        return cell
+    }
+}
+
+extension UIViewController {
+    func displayAlert(message: String)
+    {
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: UIAlertController.Style.alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
 }
